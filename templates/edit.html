@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='edit_styles.css') }}">
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+    <title>Audio Editor - Edit</title>
+</head>
+<body>
+    <h1>Audio Editor - Edit</h1>
+    <p>Original Audio:</p>
+<ul>
+    <li>Duration: {{ audio.duration_seconds }} seconds</li>
+    <li>Channels: {{ audio.channels }}</li>
+
+</ul>
+    
+    <form action="{{ url_for('edit') }}" method="post" enctype="multipart/form-data">
+        <label for="volume">Volume:</label>
+        <input type="number" name="volume" id="volume" value="0" step="1">
+        
+        <label for="pitch">Pitch (1.0 is normal):</label>
+        <input type="number" name="pitch" id="pitch" value="1.0" step="0.1">
+        <label for="speed">Speed (1.0 is normal):</label>
+        <input type="number" name="speed" id="speed" value="1.0" step="0.1">
+    <br>
+
+        <input type="submit" value="Edit">
+    </form>
+
+  {% if edited_file_name %}
+    <p>Edited Audio:</p>
+    <audio controls>
+        <source src="{{ url_for('download_file', filename=edited_file_name + '.mp3') }}" type="audio/mp3">
+        Your browser does not support the audio element.
+    </audio>
+    <br>
+    <a href="{{ url_for('download_file', filename=edited_file_name + '.mp3') }}" download>Download Edited Audio</a>
+{% endif %}
+
+</body>
+</html>

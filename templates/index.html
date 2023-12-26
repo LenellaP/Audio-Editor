@@ -1,0 +1,31 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="stylesheet" href="{{ url_for('static', filename='edit_styles.css') }}">
+    <script src="{{ url_for('static', filename='script.js') }}" defer></script>
+    <title>Audiio Editor</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="#">Головна</a>
+            <a href="#">Про нас</a>
+            <a href="#">Контакти</a>
+        </nav>
+    </header>
+    <h1>Welcome to the Audio Editor</h1>
+    <form action="/upload" method="post" enctype="multipart/form-data">
+        <label for="uploadFile">Choose an audio file:</label>
+
+        <input type="file" id="uploadFile" name="file" accept=".mp3, .wav">
+        <input type="submit" value="Upload">
+    </form>
+    <script src="script.js" defer></script>
+
+
+</body>
+</html>
